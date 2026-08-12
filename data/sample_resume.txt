@@ -1,0 +1,24 @@
+
+SAMPLE RESUME — DEMONSTRATION DATA
+
+Education:
+B.Tech Biotechnology, 2026
+
+Technical Skills:
+Python, SQL, Pandas, NumPy, Scikit-learn, Power BI, Excel, Machine Learning
+
+Domain Knowledge:
+Biotechnology, Clinical Research, Clinical Data Management, Computational Biology
+
+Experience:
+Research internship involving data analysis, machine learning, scientific documentation, and computational research.
+
+Projects:
+Machine learning pipeline for structured dataset analysis.
+AI-powered operations and career intelligence projects.
+
+Certifications:
+Clinical Research and Clinical Data Management training.
+
+Career Interests:
+Data Analytics, Business Analysis, Operations Analytics, Clinical Data Management.
