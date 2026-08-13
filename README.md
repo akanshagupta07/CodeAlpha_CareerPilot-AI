@@ -1,11 +1,41 @@
 
 # 🚀 CareerPilot AI
 
-## Personalized Career Intelligence & Job Readiness Platform
+### Personalized Career Intelligence & Job Readiness Platform
 
-CareerPilot AI is an AI-powered career intelligence platform designed to help students and early-career professionals understand their career fit, identify skill gaps, evaluate job readiness, analyze resumes, match resumes against job descriptions, prepare for interviews, and create personalized career roadmaps.
+> Turn your resume into a personalized career strategy.
 
-The platform uses a resume and a user's career-related question as inputs and generates structured, evidence-based career intelligence.
+🌐 **[Live Demo →](https://careerpilot-ai-2026.streamlit.app/)**  
+💻 **[GitHub Repository →](https://github.com/akanshagupta07/CodeAlpha_CareerPilot-AI)**
+
+---
+
+## ✨ What CareerPilot AI Does
+
+CareerPilot AI helps students and early-career professionals make more informed career decisions.
+
+| 🎯 Career Fit | 📄 Resume Intelligence |
+|---|---|
+| Discover suitable career paths | Analyze resume strength |
+| Evaluate career alignment | Identify important keywords |
+
+| 📊 Job Readiness | 🔍 Job Matching |
+|---|---|
+| Evaluate role readiness | Compare resume with job descriptions |
+| Identify improvement areas | Detect skill gaps |
+
+| 🎤 Interview Coach | 🧭 Career Roadmap |
+|---|---|
+| Generate interview questions | Create development plans |
+| Identify interview risks | Prioritize next steps |
+
+---
+
+## 🌐 Live Application
+
+### 🚀 [Launch CareerPilot AI →](https://careerpilot-ai-2026.streamlit.app/)
+
+Upload a resume, provide a career question or target role, and receive structured career intelligence.
 
 ---
 
@@ -13,26 +43,24 @@ The platform uses a resume and a user's career-related question as inputs and ge
 
 Students and early-career professionals often struggle to answer important career questions:
 
-- Which career path fits my current background?
+- Which career path fits my background?
 - Am I ready for a particular job?
 - What skills am I missing?
 - How well does my resume match a job description?
-- Which ATS keywords should I improve?
+- Which areas of my resume should I improve?
 - What should I learn next?
 - How should I prepare for interviews?
 - What should my career roadmap look like?
 
 Traditional career advice is often generic and does not systematically connect a person's resume, skills, projects, education, experience, and target job requirements.
 
-CareerPilot AI addresses this problem by transforming resume information and career questions into a structured career intelligence report.
+CareerPilot AI addresses this problem by transforming resume information and career questions into structured and actionable career intelligence.
 
 ---
 
 # 🧠 Core Capabilities
 
-CareerPilot AI combines multiple career-analysis capabilities into a single AI workflow.
-
-### 🎯 Career Fit Analysis
+## 🎯 Career Fit Analysis
 
 Identifies suitable career paths based on:
 
@@ -44,18 +72,17 @@ Identifies suitable career paths based on:
 - Certifications
 - Career interests
 
-Provides ranked career recommendations with estimated fit scores.
+Provides career recommendations with an explanation of the factors influencing the recommendation.
 
 ---
 
-### 📄 Resume Intelligence
+## 📄 Resume Intelligence
 
 Analyzes a resume for:
 
 - Resume strength
-- ATS compatibility
-- Technical keywords
 - Role alignment
+- Technical keywords
 - Project quality
 - Achievement orientation
 - Quantifiable impact
@@ -65,9 +92,9 @@ It also provides specific resume improvement recommendations.
 
 ---
 
-### 📊 Job Readiness Evaluation
+## 📊 Job Readiness Evaluation
 
-Generates an estimated job-readiness score based on factors such as:
+Generates an estimated job-readiness assessment based on factors such as:
 
 - Technical skills
 - Domain knowledge
@@ -77,40 +104,40 @@ Generates an estimated job-readiness score based on factors such as:
 - Role alignment
 - Interview readiness
 
-The score is accompanied by an explanation of strengths, weaknesses, risks, and improvement priorities.
+The assessment is accompanied by strengths, weaknesses, risks, and improvement priorities.
 
 ---
 
-### 🔍 Job Description Matching
+## 🔍 Job Description Matching
 
-CareerPilot AI can compare a resume against a job description.
+CareerPilot AI can compare resume information against a target job description.
 
 It identifies:
 
-- Overall job match score
+- Overall job match
 - Strong matches
 - Partial matches
 - Missing skills
 - Experience gaps
 - Domain gaps
-- Important ATS keywords
-- Resume improvements
+- Important keywords
+- Resume improvement areas
 - Interview preparation priorities
 
-The system explicitly distinguishes between demonstrated skills and skills that are only related or transferable.
+The system distinguishes between demonstrated skills and related or transferable skills.
 
 ---
 
-### 🧠 Skill Gap Analysis
+## 🧩 Skill Gap Analysis
 
-The platform categorizes skills into:
+Skills can be categorized into:
 
-🟢 Strong  
-🟡 Developing  
-🔴 Missing  
-🔥 High Priority
+🟢 **Strong**  
+🟡 **Developing**  
+🔴 **Missing**  
+🔥 **High Priority**
 
-It also generates a skill-gap matrix containing:
+The analysis can be organized into a skill-gap matrix containing:
 
 - Current level
 - Target level
@@ -120,9 +147,9 @@ It also generates a skill-gap matrix containing:
 
 ---
 
-### 🎤 Interview Coach
+## 🎤 Interview Coach
 
-CareerPilot AI generates interview preparation based on the user's strongest career direction.
+CareerPilot AI can generate interview preparation based on the user's target career direction.
 
 It can provide:
 
@@ -136,63 +163,59 @@ It can provide:
 
 ---
 
-### 🧭 Personalized Career Roadmap
+## 🧭 Personalized Career Roadmap
 
 The platform creates a phased development plan:
 
-**Phase 1 — 0–7 Days**
+### Phase 1 — 0–7 Days
 
-Immediate improvements.
+Immediate improvements and high-priority actions.
 
-**Phase 2 — 1–4 Weeks**
+### Phase 2 — 1–4 Weeks
 
 Skill development, projects, interview preparation, and applications.
 
-**Phase 3 — 1–3 Months**
+### Phase 3 — 1–3 Months
 
-Job-readiness development and long-term career preparation.
+Longer-term job-readiness development and career preparation.
 
 ---
 
-### ⚡ Action Center
+## ⚡ Action Center
 
-Every substantial analysis finishes with five prioritized actions.
+CareerPilot AI converts analysis into prioritized actions.
 
-Each action contains:
+Each recommended action focuses on:
 
 - What to do
 - Why it matters
 - Expected result
 
-This converts analysis into an actionable career plan.
-
 ---
 
 # 🏗️ System Architecture
 
-CareerPilot AI uses a streamlined single-LLM architecture.
-
 ```text
                     ┌─────────────────────┐
-                    │    USER QUESTION    │
+                    │    👤 USER INPUT    │
                     └──────────┬──────────┘
                                │
                                ▼
                     ┌─────────────────────┐
-                    │    RESUME INPUT     │
+                    │ 📄 RESUME + QUERY   │
                     └──────────┬──────────┘
                                │
                                ▼
                  ┌───────────────────────────┐
-                 │      PROMPT TEMPLATE      │
+                 │      🧠 PROMPT TEMPLATE   │
                  │                           │
-                 │ Career Intelligence       │
-                 │ Rules + Analysis Logic    │
+                 │ Career Intelligence      │
+                 │ Rules + Analysis Logic   │
                  └────────────┬──────────────┘
                               │
                               ▼
                     ┌─────────────────────┐
-                    │      LLM ENGINE     │
+                    │    🤖 LLM ENGINE    │
                     │                     │
                     │    CareerPilot AI   │
                     └──────────┬──────────┘
@@ -200,24 +223,24 @@ CareerPilot AI uses a streamlined single-LLM architecture.
               ┌────────────────┼────────────────┐
               │                │                │
               ▼                ▼                ▼
-        Career Fit        Resume AI        Job Match
+        🎯 Career Fit     📄 Resume AI     🔍 Job Match
               │                │                │
               ▼                ▼                ▼
-        Skill Gaps        ATS Analysis     Match Score
+        🧩 Skill Gaps      📊 Analysis      🎯 Matching
               │                │                │
               └────────────────┼────────────────┘
                                │
                                ▼
                      ┌───────────────────┐
-                     │ Interview Coach   │
+                     │ 🎤 Interview Coach│
                      └─────────┬─────────┘
                                │
                                ▼
                      ┌───────────────────┐
-                     │ Career Roadmap    │
+                     │ 🧭 Career Roadmap │
                      └─────────┬─────────┘
                                │
                                ▼
                      ┌───────────────────┐
-                     │  Action Center    │
+                     │ ⚡ Action Center  │
                      └───────────────────┘
