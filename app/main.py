@@ -1,767 +1,581 @@
 
 import streamlit as st
-import time
 
 # ============================================================
-# CAREERPILOT AI
-# AI-POWERED CAREER INTELLIGENCE PLATFORM
+# PAGE CONFIGURATION
 # ============================================================
 
 st.set_page_config(
     page_title="CareerPilot AI",
     page_icon="🚀",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="collapsed"
 )
 
 # ============================================================
-# CUSTOM CSS
+# CUSTOM STYLING
 # ============================================================
 
-st.markdown("""
-<style>
+st.markdown(
+    """
+    <style>
 
-    /* Main application */
+    /* Main background */
     .stApp {
-        background:
-            radial-gradient(
-                circle at 10% 10%,
-                rgba(99,102,241,0.10),
-                transparent 30%
-            ),
-            radial-gradient(
-                circle at 90% 20%,
-                rgba(14,165,233,0.10),
-                transparent 30%
-            ),
-            #f8fafc;
+        background: linear-gradient(
+            135deg,
+            #f8fafc 0%,
+            #eef2ff 50%,
+            #f8fafc 100%
+        );
     }
 
-    /* Remove default top spacing */
+    /* Main container */
     .block-container {
+        max-width: 1200px;
         padding-top: 2rem;
         padding-bottom: 3rem;
-        max-width: 1250px;
     }
 
-    /* Hero */
+    /* Hero section */
     .hero {
-        padding: 2.5rem 2.5rem;
+        padding: 2.5rem 2rem;
         border-radius: 24px;
-        background:
-            linear-gradient(
-                135deg,
-                #111827 0%,
-                #1e1b4b 50%,
-                #312e81 100%
-            );
+        background: linear-gradient(
+            135deg,
+            #111827,
+            #312e81
+        );
         color: white;
-        box-shadow: 0 20px 50px rgba(15,23,42,0.20);
+        text-align: center;
         margin-bottom: 2rem;
+        box-shadow: 0 15px 40px rgba(49, 46, 129, 0.20);
     }
 
-    .hero-badge {
-        display: inline-block;
-        padding: 0.4rem 0.9rem;
-        border-radius: 999px;
-        background: rgba(255,255,255,0.12);
-        border: 1px solid rgba(255,255,255,0.20);
-        font-size: 0.85rem;
-        margin-bottom: 1rem;
-    }
-
-    .hero-title {
-        font-size: 3.1rem;
+    .hero h1 {
+        font-size: 3.2rem;
+        margin-bottom: 0.5rem;
         font-weight: 800;
-        margin: 0;
-        letter-spacing: -1px;
     }
 
-    .hero-subtitle {
+    .hero p {
         font-size: 1.15rem;
-        color: #c7d2fe;
-        margin-top: 0.8rem;
-        max-width: 850px;
-        line-height: 1.7;
+        opacity: 0.9;
+        margin-bottom: 0.5rem;
     }
 
-    /* Section titles */
-    .section-title {
-        font-size: 1.6rem;
-        font-weight: 750;
-        color: #111827;
-        margin-top: 1.5rem;
-        margin-bottom: 0.3rem;
+    .hero-small {
+        font-size: 0.95rem;
+        opacity: 0.75;
     }
 
-    .section-subtitle {
-        color: #64748b;
-        margin-bottom: 1.2rem;
-    }
-
-    /* Cards */
+    /* Section cards */
     .card {
         background: white;
         padding: 1.5rem;
         border-radius: 18px;
-        border: 1px solid #e2e8f0;
-        box-shadow: 0 8px 25px rgba(15,23,42,0.06);
-        height: 100%;
-    }
-
-    .card-title {
-        font-size: 1.1rem;
-        font-weight: 700;
-        color: #111827;
-        margin-bottom: 0.5rem;
-    }
-
-    .card-text {
-        color: #64748b;
-        line-height: 1.6;
-    }
-
-    /* Score card */
-    .score-card {
-        background: linear-gradient(
-            135deg,
-            #eef2ff,
-            #f8fafc
-        );
-        border: 1px solid #c7d2fe;
-        padding: 1.8rem;
-        border-radius: 20px;
-        text-align: center;
-    }
-
-    .score {
-        font-size: 3.5rem;
-        font-weight: 800;
-        color: #4f46e5;
-    }
-
-    .score-label {
-        color: #64748b;
-        font-weight: 600;
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 8px 25px rgba(15, 23, 42, 0.06);
+        margin-bottom: 1rem;
     }
 
     /* Feature cards */
-    .feature-icon {
+    .feature {
+        background: white;
+        padding: 1.3rem;
+        border-radius: 16px;
+        border: 1px solid #e5e7eb;
+        min-height: 145px;
+        box-shadow: 0 5px 18px rgba(15, 23, 42, 0.05);
+    }
+
+    .feature h3 {
+        margin-top: 0;
+        font-size: 1.05rem;
+    }
+
+    .feature p {
+        color: #64748b;
+        font-size: 0.9rem;
+    }
+
+    /* Metrics */
+    .metric-card {
+        background: white;
+        border-radius: 16px;
+        padding: 1.3rem;
+        text-align: center;
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 5px 18px rgba(15, 23, 42, 0.05);
+    }
+
+    .metric-number {
         font-size: 2rem;
-        margin-bottom: 0.5rem;
+        font-weight: 800;
+        color: #312e81;
     }
 
-    /* Sidebar */
-    section[data-testid="stSidebar"] {
-        background: #111827;
-    }
-
-    section[data-testid="stSidebar"] * {
-        color: #e5e7eb;
+    .metric-label {
+        color: #64748b;
+        font-size: 0.85rem;
     }
 
     /* Footer */
     .footer {
         text-align: center;
-        padding: 2rem;
-        color: #94a3b8;
+        color: #64748b;
+        padding-top: 2rem;
         font-size: 0.85rem;
     }
 
-</style>
-""", unsafe_allow_html=True)
-
-
-# ============================================================
-# SIDEBAR
-# ============================================================
-
-with st.sidebar:
-
-    st.markdown("## 🚀 CareerPilot AI")
-
-    st.caption("AI Career Intelligence Platform")
-
-    st.divider()
-
-    st.markdown("### 🧭 Navigation")
-
-    page = st.radio(
-        "Go to",
-        [
-            "🏠 Career Analyzer",
-            "📊 Skill Intelligence",
-            "🛣️ Career Roadmap",
-            "🎤 Interview Coach"
-        ],
-        label_visibility="collapsed"
-    )
-
-    st.divider()
-
-    st.markdown("### ⚡ Platform Capabilities")
-
-    st.markdown("""
-    **🎯 Career Fit Analysis**
-
-    **📊 Skill Gap Detection**
-
-    **🧠 AI Career Insights**
-
-    **🛣️ Personalized Roadmap**
-
-    **🎤 Interview Preparation**
-
-    **📄 Resume Intelligence**
-    """)
-
-    st.divider()
-
-    st.caption("Built with Python • Streamlit • Langflow • LLM")
-
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 # ============================================================
-# HERO SECTION
+# HERO
 # ============================================================
 
-st.markdown("""
-<div class="hero">
+st.markdown(
+    """
+    <div class="hero">
 
-    <div class="hero-badge">
-        ✨ AI-POWERED CAREER INTELLIGENCE
+        <h1>🚀 CareerPilot AI</h1>
+
+        <p>
+            AI-Powered Career Intelligence Platform
+        </p>
+
+        <div class="hero-small">
+            Resume Intelligence • Career Fit • Skill Gap Analysis •
+            Job Readiness • Personalized Recommendations
+        </div>
+
     </div>
-
-    <div class="hero-title">
-        🚀 CareerPilot AI
-    </div>
-
-    <div class="hero-subtitle">
-        Transform your resume into an intelligent career strategy.
-        Analyze role compatibility, discover skill gaps, identify
-        opportunities, and build a personalized path toward your
-        target career.
-    </div>
-
-</div>
-""", unsafe_allow_html=True)
-
+    """,
+    unsafe_allow_html=True
+)
 
 # ============================================================
-# CAREER ANALYZER
+# INTRODUCTION
 # ============================================================
 
-if page == "🏠 Career Analyzer":
+st.markdown(
+    """
+    <div class="card">
 
+    <h2>🎯 Navigate Your Career With Intelligence</h2>
+
+    <p>
+    CareerPilot AI analyzes your resume against a target role,
+    identifies your strengths and skill gaps, and provides
+    actionable recommendations to improve your job readiness.
+    </p>
+
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+# ============================================================
+# FEATURES
+# ============================================================
+
+st.subheader("✨ What CareerPilot AI Can Do")
+
+feature_col1, feature_col2, feature_col3 = st.columns(3)
+
+with feature_col1:
     st.markdown(
-        '<div class="section-title">🎯 Career Compatibility Analyzer</div>',
+        """
+        <div class="feature">
+            <h3>📄 Resume Intelligence</h3>
+            <p>
+            Analyze your resume and extract career-relevant
+            information for role matching.
+            </p>
+        </div>
+        """,
         unsafe_allow_html=True
     )
 
+with feature_col2:
     st.markdown(
-        '<div class="section-subtitle">'
-        'Upload your resume and provide a target job description to begin your AI-powered analysis.'
-        '</div>',
+        """
+        <div class="feature">
+            <h3>🎯 Career Fit Analysis</h3>
+            <p>
+            Compare your profile against a target job
+            description and identify alignment.
+            </p>
+        </div>
+        """,
         unsafe_allow_html=True
     )
 
-    col1, col2 = st.columns(2)
-
-    # --------------------------------------------------------
-    # RESUME
-    # --------------------------------------------------------
-
-    with col1:
-
-        st.markdown("""
-        <div class="card">
-
-        <div class="card-title">
-        📄 Step 1 — Upload Resume
+with feature_col3:
+    st.markdown(
+        """
+        <div class="feature">
+            <h3>🧠 Skill Gap Detection</h3>
+            <p>
+            Discover missing skills and understand what
+            you should improve for your target role.
+            </p>
         </div>
-
-        <div class="card-text">
-        Upload your current resume for intelligent career analysis.
-        </div>
-
-        </div>
-        """, unsafe_allow_html=True)
-
-        uploaded_resume = st.file_uploader(
-            "Choose your resume",
-            type=["pdf", "txt"],
-            label_visibility="collapsed"
-        )
-
-    # --------------------------------------------------------
-    # JOB DESCRIPTION
-    # --------------------------------------------------------
-
-    with col2:
-
-        st.markdown("""
-        <div class="card">
-
-        <div class="card-title">
-        💼 Step 2 — Target Role
-        </div>
-
-        <div class="card-text">
-        Paste the job description you want to evaluate.
-        </div>
-
-        </div>
-        """, unsafe_allow_html=True)
-
-        job_description = st.text_area(
-            "Job description",
-            height=220,
-            placeholder=(
-                "Paste the complete job description here...\n\n"
-                "Example:\n"
-                "We are looking for a Business Analyst..."
-            ),
-            label_visibility="collapsed"
-        )
-
-    st.write("")
-
-    # --------------------------------------------------------
-    # ANALYZE
-    # --------------------------------------------------------
-
-    analyze = st.button(
-        "🚀 Analyze My Career Fit",
-        type="primary",
-        use_container_width=True
+        """,
+        unsafe_allow_html=True
     )
 
-    if analyze:
+st.write("")
 
-        if uploaded_resume is None:
+feature_col4, feature_col5, feature_col6 = st.columns(3)
 
-            st.warning(
-                "📄 Please upload your resume before starting the analysis."
-            )
+with feature_col4:
+    st.markdown(
+        """
+        <div class="feature">
+            <h3>📈 Job Readiness</h3>
+            <p>
+            Evaluate your current preparation and identify
+            areas requiring improvement.
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
-        elif not job_description.strip():
+with feature_col5:
+    st.markdown(
+        """
+        <div class="feature">
+            <h3>💡 Recommendations</h3>
+            <p>
+            Receive practical recommendations based on
+            your resume and target role.
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
-            st.warning(
-                "💼 Please paste a target job description."
-            )
+with feature_col6:
+    st.markdown(
+        """
+        <div class="feature">
+            <h3>🗺️ Career Roadmap</h3>
+            <p>
+            Transform identified skill gaps into a structured
+            career development direction.
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
-        else:
+# ============================================================
+# INPUT SECTION
+# ============================================================
 
-            with st.spinner(
-                "🧠 CareerPilot AI is analyzing your profile..."
-            ):
-                time.sleep(1.5)
+st.write("")
+st.divider()
 
-            st.success(
-                "✅ Analysis completed successfully!"
-            )
+st.header("🔍 Start Your Career Analysis")
 
-            st.divider()
+left, right = st.columns(2)
 
+with left:
+
+    st.markdown("### 📄 Upload Resume")
+
+    uploaded_resume = st.file_uploader(
+        "Upload your resume",
+        type=["txt", "pdf"],
+        help="Upload a TXT or PDF version of your resume."
+    )
+
+with right:
+
+    st.markdown("### 🎯 Target Role")
+
+    job_description = st.text_area(
+        "Paste the target job description",
+        height=220,
+        placeholder=(
+            "Paste the complete job description here...\n\n"
+            "Example:\n"
+            "Data Analyst\n"
+            "Required Skills: Python, SQL, Power BI..."
+        )
+    )
+
+# ============================================================
+# ANALYSIS BUTTON
+# ============================================================
+
+st.write("")
+
+analyze = st.button(
+    "🚀 Analyze My Career",
+    type="primary",
+    use_container_width=True
+)
+
+# ============================================================
+# RESULT SECTION
+# ============================================================
+
+if analyze:
+
+    if uploaded_resume is None:
+
+        st.warning(
+            "📄 Please upload your resume before starting the analysis."
+        )
+
+    elif not job_description.strip():
+
+        st.warning(
+            "🎯 Please paste a target job description."
+        )
+
+    else:
+
+        st.success(
+            "✅ Resume and job description successfully received!"
+        )
+
+        st.divider()
+
+        st.header("📊 Career Intelligence Dashboard")
+
+        # Demo metrics for the current MVP
+        metric1, metric2, metric3, metric4 = st.columns(4)
+
+        with metric1:
             st.markdown(
-                '<div class="section-title">📊 Career Intelligence Report</div>',
+                """
+                <div class="metric-card">
+                    <div class="metric-number">82%</div>
+                    <div class="metric-label">Career Fit</div>
+                </div>
+                """,
                 unsafe_allow_html=True
             )
 
-            # ------------------------------------------------
-            # SCORE
-            # ------------------------------------------------
-
-            c1, c2, c3, c4 = st.columns(4)
-
-            with c1:
-
-                st.markdown("""
-                <div class="score-card">
-
-                    <div class="score">
-                    87%
-                    </div>
-
-                    <div class="score-label">
-                    Career Fit
-                    </div>
-
+        with metric2:
+            st.markdown(
+                """
+                <div class="metric-card">
+                    <div class="metric-number">14/18</div>
+                    <div class="metric-label">Skills Matched</div>
                 </div>
-                """, unsafe_allow_html=True)
-
-            with c2:
-
-                st.metric(
-                    "🎯 Skill Match",
-                    "82%",
-                    "+12%"
-                )
-
-            with c3:
-
-                st.metric(
-                    "📚 Skills Detected",
-                    "18",
-                    "+5"
-                )
-
-            with c4:
-
-                st.metric(
-                    "⚠️ Skill Gaps",
-                    "6",
-                    "-3"
-                )
-
-            st.write("")
-
-            # ------------------------------------------------
-            # ANALYSIS COLUMNS
-            # ------------------------------------------------
-
-            left, right = st.columns(2)
-
-            with left:
-
-                st.markdown("""
-                <div class="card">
-
-                <div class="card-title">
-                ✅ Your Strengths
-                </div>
-
-                <div class="card-text">
-
-                • Python & data analysis<br>
-                • SQL & structured datasets<br>
-                • Machine learning fundamentals<br>
-                • Scientific research experience<br>
-                • Analytical problem solving<br>
-                • Technical documentation
-
-                </div>
-
-                </div>
-                """, unsafe_allow_html=True)
-
-            with right:
-
-                st.markdown("""
-                <div class="card">
-
-                <div class="card-title">
-                🔎 Skills to Develop
-                </div>
-
-                <div class="card-text">
-
-                • Business requirements gathering<br>
-                • Agile / Scrum fundamentals<br>
-                • Stakeholder management<br>
-                • Business process modelling<br>
-                • Advanced SQL analytics<br>
-                • Jira / project tracking
-
-                </div>
-
-                </div>
-                """, unsafe_allow_html=True)
-
-            st.write("")
-
-            # ------------------------------------------------
-            # AI INSIGHT
-            # ------------------------------------------------
-
-            st.markdown("""
-            <div class="card">
-
-            <div class="card-title">
-            🧠 CareerPilot AI Insight
-            </div>
-
-            <div class="card-text">
-
-            Your profile demonstrates a strong analytical foundation
-            with a combination of biotechnology knowledge, computational
-            research, Python, SQL and machine-learning experience.
-
-            The strongest opportunity is to position yourself as a
-            <b>data-driven life-sciences professional</b> rather than
-            presenting yourself solely as a biotechnology graduate.
-
-            Your highest-priority development areas are business
-            requirements, process analysis, stakeholder communication
-            and industry-oriented analytics.
-
-            </div>
-
-            </div>
-            """, unsafe_allow_html=True)
-
-
-# ============================================================
-# SKILL INTELLIGENCE
-# ============================================================
-
-elif page == "📊 Skill Intelligence":
-
-    st.markdown(
-        '<div class="section-title">📊 Skill Intelligence</div>',
-        unsafe_allow_html=True
-    )
-
-    st.markdown(
-        '<div class="section-subtitle">'
-        'Understand how your current capabilities align with modern career requirements.'
-        '</div>',
-        unsafe_allow_html=True
-    )
-
-    col1, col2, col3 = st.columns(3)
-
-    with col1:
-
-        st.markdown("""
-        <div class="card">
-
-        <div class="feature-icon">🐍</div>
-
-        <div class="card-title">
-        Technical Skills
-        </div>
-
-        <div class="card-text">
-
-        Python<br>
-        SQL<br>
-        Machine Learning<br>
-        Data Analysis<br>
-        Pandas<br>
-        Scikit-learn
-
-        </div>
-
-        </div>
-        """, unsafe_allow_html=True)
-
-    with col2:
-
-        st.markdown("""
-        <div class="card">
-
-        <div class="feature-icon">🧬</div>
-
-        <div class="card-title">
-        Domain Expertise
-        </div>
-
-        <div class="card-text">
-
-        Biotechnology<br>
-        Clinical Research<br>
-        Pharmacovigilance<br>
-        Clinical Data Management<br>
-        Computational Biology
-
-        </div>
-
-        </div>
-        """, unsafe_allow_html=True)
-
-    with col3:
-
-        st.markdown("""
-        <div class="card">
-
-        <div class="feature-icon">📈</div>
-
-        <div class="card-title">
-        Business Skills
-        </div>
-
-        <div class="card-text">
-
-        Data-driven decision making<br>
-        Process analysis<br>
-        Documentation<br>
-        Reporting<br>
-        Problem solving
-
-        </div>
-
-        </div>
-        """, unsafe_allow_html=True)
-
-    st.divider()
-
-    st.subheader("Skill Readiness")
-
-    skills = {
-        "Python": 90,
-        "Data Analysis": 85,
-        "SQL": 70,
-        "Machine Learning": 82,
-        "Clinical Research": 80,
-        "Business Analysis": 55,
-        "Communication": 75
-    }
-
-    for skill, value in skills.items():
-
-        st.write(f"**{skill} — {value}%**")
-
-        st.progress(value / 100)
-
-
-# ============================================================
-# CAREER ROADMAP
-# ============================================================
-
-elif page == "🛣️ Career Roadmap":
-
-    st.markdown(
-        '<div class="section-title">🛣️ Personalized Career Roadmap</div>',
-        unsafe_allow_html=True
-    )
-
-    st.markdown(
-        '<div class="section-subtitle">'
-        'A structured path from your current skill profile to your target career.'
-        '</div>',
-        unsafe_allow_html=True
-    )
-
-    roadmap = [
-        (
-            "01",
-            "Strengthen SQL",
-            "Master JOINs, CTEs, aggregations and business KPIs."
-        ),
-        (
-            "02",
-            "Learn Business Analysis",
-            "Understand BRDs, requirements gathering, user stories and process mapping."
-        ),
-        (
-            "03",
-            "Build Portfolio Projects",
-            "Create real-world analytics and career intelligence projects."
-        ),
-        (
-            "04",
-            "Master Interview Skills",
-            "Practice technical, behavioral and case-based questions."
-        ),
-        (
-            "05",
-            "Target Relevant Roles",
-            "Apply strategically to Analytics, Operations and Life Sciences roles."
-        )
-    ]
-
-    for number, title, description in roadmap:
-
-        st.markdown(f"""
-        <div class="card" style="margin-bottom:15px;">
-
-            <div style="font-size:0.85rem;color:#6366f1;font-weight:700;">
-            STEP {number}
-            </div>
-
-            <div class="card-title">
-            {title}
-            </div>
-
-            <div class="card-text">
-            {description}
-            </div>
-
-        </div>
-        """, unsafe_allow_html=True)
-
-
-# ============================================================
-# INTERVIEW COACH
-# ============================================================
-
-elif page == "🎤 Interview Coach":
-
-    st.markdown(
-        '<div class="section-title">🎤 AI Interview Coach</div>',
-        unsafe_allow_html=True
-    )
-
-    st.markdown(
-        '<div class="section-subtitle">'
-        'Practice answering questions based on your target role and profile.'
-        '</div>',
-        unsafe_allow_html=True
-    )
-
-    question = st.selectbox(
-        "Choose an interview question",
-        [
-            "Tell me about yourself.",
-            "Why should we hire you?",
-            "Why are you transitioning into this role?",
-            "Explain one of your major projects.",
-            "What are your strengths?",
-            "What is one skill you are currently improving?"
-        ]
-    )
-
-    answer = st.text_area(
-        "Your answer",
-        height=180,
-        placeholder="Type your interview answer here..."
-    )
-
-    if st.button(
-        "🧠 Evaluate My Answer",
-        type="primary"
-    ):
-
-        if not answer.strip():
-
-            st.warning("Please enter your answer first.")
-
-        else:
-
-            st.success("Interview response evaluated!")
-
-            col1, col2, col3 = st.columns(3)
-
-            with col1:
-                st.metric("Structure", "8/10")
-
-            with col2:
-                st.metric("Clarity", "9/10")
-
-            with col3:
-                st.metric("Relevance", "8/10")
-
-            st.info(
-                "💡 Tip: Strengthen your answer by connecting your "
-                "technical experience to measurable business or "
-                "project outcomes."
+                """,
+                unsafe_allow_html=True
             )
 
+        with metric3:
+            st.markdown(
+                """
+                <div class="metric-card">
+                    <div class="metric-number">78%</div>
+                    <div class="metric-label">Job Readiness</div>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+
+        with metric4:
+            st.markdown(
+                """
+                <div class="metric-card">
+                    <div class="metric-number">4</div>
+                    <div class="metric-label">Skill Gaps</div>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+
+        st.write("")
+
+        # Tabs
+        tab1, tab2, tab3, tab4 = st.tabs(
+            [
+                "🎯 Career Fit",
+                "🧠 Skills",
+                "💡 Recommendations",
+                "🗺️ Roadmap"
+            ]
+        )
+
+        with tab1:
+
+            st.subheader("Career Fit Analysis")
+
+            st.progress(0.82)
+
+            st.write(
+                "Your profile demonstrates strong alignment with "
+                "the target role based on the submitted resume "
+                "and job description."
+            )
+
+            st.info(
+                "The current version demonstrates the CareerPilot "
+                "analysis interface. The Langflow workflow can be "
+                "connected here for live LLM-generated analysis."
+            )
+
+        with tab2:
+
+            st.subheader("Skill Analysis")
+
+            col1, col2 = st.columns(2)
+
+            with col1:
+
+                st.markdown("### ✅ Matching Skills")
+
+                st.success("Python")
+                st.success("SQL")
+                st.success("Machine Learning")
+                st.success("Data Analysis")
+                st.success("Problem Solving")
+
+            with col2:
+
+                st.markdown("### ⚠️ Potential Skill Gaps")
+
+                st.warning("Advanced Power BI")
+                st.warning("Cloud Analytics")
+                st.warning("Advanced Statistics")
+                st.warning("Domain-specific tools")
+
+        with tab3:
+
+            st.subheader("Personalized Recommendations")
+
+            st.markdown(
+                """
+                **1. Strengthen role-specific technical skills**
+
+                Focus on the technologies and tools explicitly
+                mentioned in the target job description.
+
+                **2. Improve resume alignment**
+
+                Highlight measurable achievements and keywords
+                relevant to the target position.
+
+                **3. Build one targeted portfolio project**
+
+                Demonstrate practical application of the skills
+                required by the target role.
+
+                **4. Prepare for role-specific interviews**
+
+                Practice technical, behavioral and
+                case-based questions.
+                """
+            )
+
+        with tab4:
+
+            st.subheader("Suggested Career Roadmap")
+
+            st.markdown(
+                """
+                ### Phase 1 — Foundation
+                Build strong fundamentals in the missing skills.
+
+                ### Phase 2 — Practical Application
+                Complete targeted projects demonstrating those skills.
+
+                ### Phase 3 — Resume Optimization
+                Align your resume with target job requirements.
+
+                ### Phase 4 — Interview Preparation
+                Practice technical and behavioral questions.
+
+                ### Phase 5 — Job Application
+                Apply strategically to roles matching your profile.
+                """
+            )
+
+# ============================================================
+# TECHNOLOGY STACK
+# ============================================================
+
+st.divider()
+
+st.subheader("🛠️ Technology Stack")
+
+tech1, tech2, tech3, tech4, tech5 = st.columns(5)
+
+with tech1:
+    st.markdown("**🐍 Python**")
+
+with tech2:
+    st.markdown("**⚡ Streamlit**")
+
+with tech3:
+    st.markdown("**🧠 Generative AI**")
+
+with tech4:
+    st.markdown("**🔗 Langflow**")
+
+with tech5:
+    st.markdown("**🐙 GitHub**")
+
+# ============================================================
+# PROJECT INFORMATION
+# ============================================================
+
+st.divider()
+
+about1, about2 = st.columns(2)
+
+with about1:
+
+    st.markdown(
+        """
+        ### 📌 About the Project
+
+        CareerPilot AI was developed as an AI-focused career
+        intelligence prototype to demonstrate how Generative AI,
+        structured workflows and Python applications can support
+        personalized career decision-making.
+        """
+    )
+
+with about2:
+
+    st.markdown(
+        """
+        ### 🎓 Project Context
+
+        Developed as part of the CodeAlpha AI internship,
+        combining Python application development, LLM workflow
+        orchestration and career analytics.
+        """
+    )
 
 # ============================================================
 # FOOTER
 # ============================================================
 
-st.markdown("""
-<div class="footer">
+st.markdown(
+    """
+    <div class="footer">
 
-    🚀 <b>CareerPilot AI</b><br>
+    🚀 <strong>CareerPilot AI</strong><br>
 
-    AI-powered career intelligence for smarter career decisions.
+    AI-Powered Career Intelligence Platform<br><br>
 
-    <br><br>
+    Built with Python • Streamlit • Generative AI • Langflow
 
-    Built with Python • Streamlit • Langflow • Generative AI
-
-</div>
-""", unsafe_allow_html=True)
+    </div>
+    """,
+    unsafe_allow_html=True
+)
